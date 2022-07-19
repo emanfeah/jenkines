@@ -4,7 +4,7 @@ pipeline {
         AWS_ACCESSS_KEY_ID = credentials('aws-acesss-key-id')
         AWS_SECRET_ACCESSS_KEY = credentials('aws-Secret-access-key')
         AWS_S3_BUCKET = "artifact-repo-12"
-        ARTIFICT_NAME = "hello-world.war"
+        ARTIFACT_NAME = "hello-world.war"
     }
     stages {
         stage('Validate') {
@@ -40,10 +40,10 @@ pipeline {
             }
         }
 
-        stage('Publish Artifict to s3 bucket'){
+        stage('Publish to s3 bucket'){
             steps {
-             sh "aws configure set region us-east-1"
-             sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFICT_NAME"
+                sh "aws configure set region us-east-1"
+                sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
             }
         }
 
